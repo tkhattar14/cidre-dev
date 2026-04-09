@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cidre — Local-first search intelligence for macOS</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+</head>
+<body>
+    <main>
+        <section class="hero">
+            <h1>cidre</h1>
+            <p class="tagline">Local-first search intelligence for macOS</p>
+
+            <div class="terminal">
+                <div class="terminal-bar">
+                    <span class="dot red"></span>
+                    <span class="dot yellow"></span>
+                    <span class="dot green"></span>
+                </div>
+                <div class="terminal-body">
+                    <p class="prompt">$ cidre search "sunset photos"</p>
+                    <p class="blank"></p>
+                    <p class="result"><span class="num">1.</span> <span class="file">IMG_7202.jpg</span> <span class="tags">[travel, landscape]</span></p>
+                    <p class="desc">&nbsp;&nbsp;&nbsp;"Golden sunset over the ocean from a beach"</p>
+                    <p class="meta">&nbsp;&nbsp;&nbsp;~/Documents/IMG_7202.jpg &middot; 2.4 MB &middot; 2024-06-15</p>
+                    <p class="score">&nbsp;&nbsp;&nbsp;Score: 0.92</p>
+                    <p class="blank"></p>
+                    <p class="result"><span class="num">2.</span> <span class="file">vacation_23.png</span> <span class="tags">[landscape]</span></p>
+                    <p class="desc">&nbsp;&nbsp;&nbsp;"Mountain sunset with orange and purple sky"</p>
+                    <p class="meta">&nbsp;&nbsp;&nbsp;~/Pictures/vacation_23.png &middot; 1.8 MB &middot; 2023-08-20</p>
+                    <p class="score">&nbsp;&nbsp;&nbsp;Score: 0.87</p>
+                </div>
+            </div>
+
+            <p class="privacy">Your files. Your photos. Your machine. Nothing leaves the laptop.</p>
+        </section>
+
+        <section class="how-it-works">
+            <h2>How it works</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-num">1</div>
+                    <h3>Index</h3>
+                    <p>Gemma 4 describes and categorizes your photos, documents, videos, and notes.</p>
+                </div>
+                <div class="step">
+                    <div class="step-num">2</div>
+                    <h3>Embed</h3>
+                    <p>Descriptions are converted to vectors and stored locally in SQLite.</p>
+                </div>
+                <div class="step">
+                    <div class="step-num">3</div>
+                    <h3>Search</h3>
+                    <p>Queries are matched instantly via semantic similarity. No LLM call needed.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="features">
+            <h2>Features</h2>
+            <ul class="feature-grid">
+                <li>Photos, docs, videos, notes</li>
+                <li>Apple Photos integration</li>
+                <li>Auto-categorization</li>
+                <li>Background file watching</li>
+                <li>Choose your embedding model</li>
+                <li>100% local &mdash; powered by Ollama</li>
+            </ul>
+        </section>
+
+        <section class="install">
+            <h2>Get started</h2>
+            <div class="terminal small">
+                <div class="terminal-bar">
+                    <span class="dot red"></span>
+                    <span class="dot yellow"></span>
+                    <span class="dot green"></span>
+                </div>
+                <div class="terminal-body">
+                    <p class="prompt">$ pip install cidre</p>
+                    <p class="prompt">$ cidre init</p>
+                    <p class="prompt">$ cidre add ~/Documents</p>
+                    <p class="prompt">$ cidre add --photos</p>
+                    <p class="prompt">$ cidre index</p>
+                    <p class="prompt">$ cidre search "sunset photos"</p>
+                </div>
+            </div>
+            <p class="github"><a href="https://github.com/cidre-search/cidre">View on GitHub</a></p>
+        </section>
+
+        <footer>
+            <p>MIT License &middot; Built for macOS &middot; Powered by Gemma 4 + Ollama</p>
+        </footer>
+    </main>
+</body>
+</html>
