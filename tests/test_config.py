@@ -3,7 +3,7 @@ from cidre.config import CidreConfig, load_config, save_config
 
 def test_default_config():
     config = CidreConfig()
-    assert config.llm_model == "gemma4:26b-a4b"
+    assert config.llm_model == "gemma4"
     assert config.embedding_provider == "ollama"
     assert config.embedding_model == "embeddinggemma"
     assert config.embedding_dimensions == 768
@@ -25,9 +25,9 @@ def test_save_and_load_config(tmp_cidre_home):
     loaded = load_config(tmp_cidre_home / "config.toml")
     assert loaded.sources_watched == ["~/Documents", "~/Desktop"]
     assert loaded.photos_enabled is True
-    assert loaded.llm_model == "gemma4:26b-a4b"
+    assert loaded.llm_model == "gemma4"
 
 
 def test_load_missing_config_returns_default(tmp_cidre_home):
     loaded = load_config(tmp_cidre_home / "config.toml")
-    assert loaded.llm_model == "gemma4:26b-a4b"
+    assert loaded.llm_model == "gemma4"

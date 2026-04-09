@@ -57,8 +57,9 @@ class SearchEngine:
             if intent.category and intent.category not in item.categories:
                 continue
 
-            distance = distances.get(item.rowid, 1.0)
-            score = max(0.0, 1.0 - distance)
+            distance = distances.get(item.rowid, 999.0)
+            # L2 distances can be >1; normalize to 0-1 range using inverse scaling
+            score = 1.0 / (1.0 + distance)
 
             results.append(SearchResult(
                 file_path=item.file_path,

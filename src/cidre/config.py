@@ -21,15 +21,15 @@ EMBEDDING_MODELS = {
 }
 
 LLM_MODELS = {
-    "gemma4:26b-a4b": {"memory_gb": 7, "label": "26B MoE (recommended for 24GB+)"},
-    "gemma4:e4b": {"memory_gb": 2.4, "label": "E4B (for 16GB machines)"},
-    "gemma4:31b": {"memory_gb": 11, "label": "31B Dense (for 32GB+)"},
+    "gemma4": {"memory_gb": 9.6, "label": "E4B 8B vision+audio (default)"},
+    "gemma4:26b": {"memory_gb": 17, "label": "26B MoE (recommended for 32GB+)"},
+    "gemma4:31b": {"memory_gb": 20, "label": "31B Dense (for 48GB+)"},
 }
 
 
 @dataclass
 class CidreConfig:
-    llm_model: str = "gemma4:26b-a4b"
+    llm_model: str = "gemma4"
     embedding_provider: str = "ollama"
     embedding_model: str = "embeddinggemma"
     embedding_dimensions: int = 768
