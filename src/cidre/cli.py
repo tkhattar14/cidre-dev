@@ -316,3 +316,54 @@ def categories():
     for cat, count in sorted(cat_counts.items(), key=lambda x: -x[1]):
         table.add_row(cat, str(count))
     console.print(table)
+
+
+@app.command("watch")
+def watch(
+    action: str = typer.Argument(..., help="start or stop"),
+    foreground: bool = typer.Option(False, "--foreground", help="Run in foreground (for launchd)"),
+):
+    """Start or stop the background file watcher."""
+    config = _ensure_initialized()
+
+    plist_path = Path.home() / "Library/LaunchAgents/com.cidre.watcher.plist"
+
+    if action == "start":
+        if foreground:
+            from cidre.db import init_db
+            from cidre.indexer.daemon import start_watcher
+            from cidre.indexer.pipeline import IndexingPipeline
+            from cidre.indexer.scanner import classify_file
+            from cidre.providers.base import get_provider
+            from cidre.providers.ollama import OllamaLLM
+
+            conn = init_db(CIDRE_HOME / "cidre.db", config.embedding_dimensions)
+            embedder = get_provider(config.embedding_provider, config.embedding_model)
+            llm = OllamaLLM(model=config.llm_model)
+            pipeline = IndexingPipeline(conn=conn, llm=llm, embedder=embedder)
+
+            def on_file_change(path_str: str):
+                p = Path(path_str)
+                ft = classify_file(p)
+                if ft:
+                    pipeline.index_file(p, ft)
+
+            console.print("Watching for changes... (Ctrl+C to stop)")
+            start_watcher(config.sources_watched, on_file_change, config.exclude_patterns)
+        else:
+            from cidre.indexer.daemon import generate_launchd_plist
+            plist_content = generate_launchd_plist()
+            plist_path.parent.mkdir(parents=True, exist_ok=True)
+            plist_path.write_text(plist_content)
+            subprocess.run(["launchctl", "load", str(plist_path)])
+            console.print("[green]Watcher daemon started.[/green]")
+
+    elif action == "stop":
+        if plist_path.exists():
+            subprocess.run(["launchctl", "unload", str(plist_path)])
+            plist_path.unlink()
+            console.print("[green]Watcher daemon stopped.[/green]")
+        else:
+            console.print("[dim]No daemon running.[/dim]")
+    else:
+        console.print("[red]Use: cidre watch start|stop[/red]")
