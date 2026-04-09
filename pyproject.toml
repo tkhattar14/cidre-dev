@@ -1,0 +1,45 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "cidre"
+version = "0.1.0"
+description = "Local-first search intelligence for macOS"
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.12"
+dependencies = [
+    "typer>=0.15",
+    "rich>=13.0",
+    "sqlite-vec>=0.1",
+    "osxphotos>=0.68",
+    "watchdog>=4.0",
+    "pdfplumber>=0.11",
+    "httpx>=0.27",
+    "tomli>=2.0;python_version<'3.11'",
+    "tomli-w>=1.0",
+    "pillow>=10.0",
+]
+
+[project.optional-dependencies]
+openai = ["openai>=1.0"]
+dev = [
+    "pytest>=8.0",
+    "pytest-tmp-files>=0.0.1",
+    "ruff>=0.5",
+    "mypy>=1.10",
+]
+
+[project.scripts]
+cidre = "cidre.cli:app"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/cidre"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
