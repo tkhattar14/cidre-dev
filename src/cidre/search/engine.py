@@ -1,8 +1,8 @@
 from __future__ import annotations
 import sqlite3
 from dataclasses import dataclass
-from cidre.db import search_by_vector, get_items_by_rowids, ItemRow
-from cidre.search.query import parse_query, QueryIntent
+from cidre.db import search_by_vector, get_items_by_rowids
+from cidre.search.query import parse_query
 
 
 @dataclass

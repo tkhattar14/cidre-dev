@@ -1,5 +1,4 @@
-from pathlib import Path
-from unittest.mock import MagicMock, patch
+from unittest.mock import MagicMock
 from cidre.indexer.pipeline import IndexingPipeline
 from cidre.db import init_db, get_item_by_path
 

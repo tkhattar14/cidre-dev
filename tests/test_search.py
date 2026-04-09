@@ -1,5 +1,5 @@
 from datetime import datetime
-from cidre.search.query import parse_query, QueryIntent
+from cidre.search.query import parse_query
 from cidre.search.engine import SearchEngine
 from cidre.db import init_db, insert_item, ItemRow
 from unittest.mock import MagicMock

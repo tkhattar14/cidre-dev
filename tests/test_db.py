@@ -1,5 +1,3 @@
-import sqlite3
-from pathlib import Path
 from cidre.db import init_db, insert_item, search_by_metadata, get_item_by_path, ItemRow
 
 

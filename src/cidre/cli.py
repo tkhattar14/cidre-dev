@@ -2,7 +2,6 @@ from __future__ import annotations
 
 import json
 import subprocess
-import sys
 from pathlib import Path
 
 import typer
@@ -104,10 +103,10 @@ def init():
     (CIDRE_HOME / "logs").mkdir(exist_ok=True)
     save_config(config, CIDRE_HOME / "config.toml")
 
-    console.print(f"\n[green]Cidre initialized![/green]")
+    console.print("\n[green]Cidre initialized![/green]")
     console.print(f"  LLM: {llm_model}")
     console.print(f"  Embedding: {emb_model} ({emb_info['dimensions']}d)")
-    console.print(f"\nNext: [bold]cidre add ~/Documents[/bold]")
+    console.print("\nNext: [bold]cidre add ~/Documents[/bold]")
 
 
 @app.command()
@@ -165,7 +164,7 @@ def status():
         console.print("Cidre is not initialized. Run: [bold]cidre init[/bold]")
         return
 
-    console.print(f"[bold]Cidre Status[/bold]\n")
+    console.print("[bold]Cidre Status[/bold]\n")
     console.print(f"LLM: {config.llm_model}")
     console.print(f"Embedding: {config.embedding_model} ({config.embedding_dimensions}d)")
     console.print(f"Photos: {'enabled' if config.photos_enabled else 'disabled'}")
@@ -180,7 +179,7 @@ def status():
         stats = get_index_stats(conn)
         conn.close()
 
-        console.print(f"\n[bold]Index:[/bold]")
+        console.print("\n[bold]Index:[/bold]")
         table = Table()
         table.add_column("Type")
         table.add_column("Count", justify="right")

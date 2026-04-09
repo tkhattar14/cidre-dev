@@ -1,5 +1,4 @@
 """End-to-end integration test using mocked Ollama responses."""
-from pathlib import Path
 from unittest.mock import MagicMock
 
 from cidre.config import CidreConfig, save_config

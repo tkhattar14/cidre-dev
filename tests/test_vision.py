@@ -1,5 +1,5 @@
-from unittest.mock import MagicMock, patch
-from cidre.vision.describe import describe_image, describe_video, describe_document, describe_markdown
+from unittest.mock import MagicMock
+from cidre.vision.describe import describe_image, describe_markdown
 from cidre.vision.categorize import parse_categories
 
 

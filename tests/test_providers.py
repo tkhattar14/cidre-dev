@@ -1,4 +1,3 @@
-from unittest.mock import patch, MagicMock
 from cidre.providers.base import get_provider
 from cidre.providers.ollama import OllamaEmbedding, OllamaLLM
 from cidre.providers.openai import OpenAIEmbedding

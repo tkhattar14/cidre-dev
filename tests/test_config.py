@@ -1,4 +1,3 @@
-from pathlib import Path
 from cidre.config import CidreConfig, load_config, save_config
 
 
