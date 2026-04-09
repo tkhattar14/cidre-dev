@@ -14,9 +14,10 @@ DEFAULT_EXCLUDE = [
 ]
 
 EMBEDDING_MODELS = {
+    "qwen3-embedding:8b": {"provider": "ollama", "dimensions": 4096},
+    "qwen3-embedding:4b": {"provider": "ollama", "dimensions": 2560},
     "embeddinggemma": {"provider": "ollama", "dimensions": 768},
     "bge-m3": {"provider": "ollama", "dimensions": 1024},
-    "qwen3-embedding:4b": {"provider": "ollama", "dimensions": 4096},
     "text-embedding-3-large": {"provider": "openai", "dimensions": 3072},
 }
 
